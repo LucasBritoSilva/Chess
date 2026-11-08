@@ -3,4 +3,5 @@
 /.tools/
 __pycache__/
 *.pyc
+/node_modules/
 

@@ -1,0 +1,12 @@
+{
+  "name": "chessgame-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:ui": "node tests/test_ui.mjs",
+    "test:wasm": "node tests/test_wasm.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "29.1.1"
+  }
+}

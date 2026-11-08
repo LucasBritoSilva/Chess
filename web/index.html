@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#214e43" />
+    <meta
+      name="description"
+      content="Uma partida de xadrez entre duas pessoas, no mesmo computador. Simples, local e sem cadastro."
+    />
+    <title>ChessGame — uma partida entre amigos</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="ChessGame, início"
+        ><span class="brand-icon" aria-hidden="true">♞</span> Chess<span
+          >Game</span
+        ></a
+      >
+      <span class="local-badge"
+        ><i aria-hidden="true"></i> Dois jogadores · local</span
+      >
+    </header>
+    <main>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">O TABULEIRO É DE VOCÊS</p>
+          <h1>Seu próximo lance.</h1>
+        </div>
+        <p>Uma partida, duas pessoas.<br />Sem pressa. Só xadrez.</p>
+      </div>
+      <div class="game-layout">
+        <section class="board-section" aria-label="Área de jogo">
+          <div class="player" id="player-black">
+            <span class="avatar black" aria-hidden="true"
+              ><svg viewBox="0 0 80 80">
+                <use href="assets/pieces.svg#king" /></svg
+            ></span>
+            <div>
+              <h2>
+                Pretas
+                <span class="turn-tag" id="black-tag" hidden>Sua vez</span>
+              </h2>
+              <div
+                class="captured"
+                id="captured-black"
+                aria-label="Peças capturadas pelas pretas"
+              >
+                Nenhuma captura
+              </div>
+            </div>
+            <span class="player-dot" aria-hidden="true"></span>
+          </div>
+          <div class="board-frame">
+            <div
+              id="board"
+              class="board"
+              role="group"
+              aria-label="Tabuleiro de xadrez. Use as setas para navegar e Enter para selecionar."
+              aria-busy="true"
+            ></div>
+          </div>
+          <div class="player" id="player-white">
+            <span class="avatar white" aria-hidden="true"
+              ><svg viewBox="0 0 80 80">
+                <use href="assets/pieces.svg#king" /></svg
+            ></span>
+            <div>
+              <h2>
+                Brancas
+                <span class="turn-tag" id="white-tag" hidden>Sua vez</span>
+              </h2>
+              <div
+                class="captured"
+                id="captured-white"
+                aria-label="Peças capturadas pelas brancas"
+              >
+                Nenhuma captura
+              </div>
+            </div>
+            <span class="player-dot" aria-hidden="true"></span>
+          </div>
+          <p class="board-tip">
+            <span aria-hidden="true">↳</span> Selecione uma peça e depois a casa
+            de destino.
+          </p>
+        </section>
+        <aside class="side-panel" aria-label="Informações da partida">
+          <section class="status-card" aria-live="polite" aria-atomic="true">
+            <p class="eyebrow" id="status-label">PREPARANDO O TABULEIRO</p>
+            <h2 id="status-title">Carregando…</h2>
+            <p id="status-description">
+              Só um instante para começar a partida.
+            </p>
+          </section>
+          <section class="history-section">
+            <div class="section-title">
+              <h2>Jogadas</h2>
+              <span id="move-count">0 lances</span>
+            </div>
+            <div class="history-head" aria-hidden="true">
+              <span>#</span><span>Brancas</span><span>Pretas</span>
+            </div>
+            <div class="history-scroll" id="history-scroll">
+              <div class="empty-history" id="empty-history">
+                <span aria-hidden="true">♙</span>
+                <p>A partida começa com você.</p>
+                <small>As brancas fazem o primeiro lance.</small>
+              </div>
+              <ol id="history" aria-label="Histórico de jogadas"></ol>
+            </div>
+          </section>
+          <div class="actions">
+            <button class="primary-button" id="new-game" disabled>
+              <span aria-hidden="true">↻</span> Nova partida
+            </button>
+            <div class="secondary-actions">
+              <button id="flip-board" disabled>↕ Girar tabuleiro</button
+              ><button id="draw-agreement" disabled>Combinar empate</button>
+            </div>
+            <button id="claim-draw" class="claim-button" hidden>
+              Reivindicar empate
+            </button>
+          </div>
+        </aside>
+      </div>
+      <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+      <details class="help">
+        <summary>
+          Como jogar & regras de empate <span aria-hidden="true">+</span>
+        </summary>
+        <div>
+          <p>
+            As brancas começam. Clique em uma peça para ver seus destinos legais
+            e clique em um deles para jogar. Também é possível usar as setas,
+            Enter e Escape no tabuleiro. Na promoção, escolha dama, torre, bispo
+            ou cavalo.
+          </p>
+          <p>
+            Xeque, mate, afogamento, roque e en passant são verificados
+            automaticamente. Três repetições ou 50 lances de cada lado sem
+            captura nem movimento de peão permitem reivindicar empate —
+            inclusive anunciando o lance que completa a condição. Cinco
+            repetições, 75 lances ou material insuficiente básico encerram a
+            partida automaticamente.
+          </p>
+          <p>
+            O botão “Combinar empate” permite encerrar a partida quando ambos
+            concordam. A detecção de material insuficiente cobre reis isolados,
+            rei e bispo ou cavalo contra rei, e posições só com reis e bispos de
+            uma mesma cor de casas. Outras posições mortas, como bloqueios
+            complexos de peões, não são detectadas automaticamente. A partida
+            fica apenas nesta aba; recarregar a página inicia outra.
+          </p>
+        </div>
+      </details>
+    </main>
+    <footer>
+      <span>ChessGame</span><span>Feito para dividir o tabuleiro.</span>
+    </footer>
+    <dialog id="promotion-dialog" aria-labelledby="promotion-title">
+      <p class="eyebrow">UM NOVO CAMINHO</p>
+      <h2 id="promotion-title">Promova seu peão</h2>
+      <p>Escolha a peça que entra no tabuleiro.</p>
+      <div id="promotion-options" class="promotion-options"></div>
+      <button class="text-button" id="cancel-promotion">
+        Voltar ao tabuleiro
+      </button>
+    </dialog>
+    <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-description"></p>
+      <div class="dialog-actions">
+        <button class="text-button" id="confirm-cancel">Cancelar</button
+        ><button class="primary-button" id="confirm-ok">Confirmar</button>
+      </div>
+    </dialog>
+    <dialog id="claim-dialog" aria-labelledby="claim-title">
+      <h2 id="claim-title">Reivindicar empate</h2>
+      <p id="claim-description">
+        Escolha o lance anunciado que permite o empate. Ele não será executado.
+      </p>
+      <label for="claim-move">Condição do empate</label
+      ><select id="claim-move"></select>
+      <div class="dialog-actions">
+        <button class="text-button" id="claim-cancel">Cancelar</button
+        ><button class="primary-button" id="claim-ok">Reivindicar</button>
+      </div>
+    </dialog>
+    <noscript
+      ><p class="noscript">
+        Ative o JavaScript para conectar o tabuleiro ao núcleo de xadrez.
+      </p></noscript
+    >
+  </body>
+</html>
