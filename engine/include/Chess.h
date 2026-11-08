@@ -3,7 +3,6 @@
 #include <array>
 #include <cstdint>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 namespace chess {
@@ -43,7 +42,6 @@ public:
     // Internal transition: caller must supply a move from legalMoves().
     Board after(const Move& move) const;
     bool insufficientMaterial() const;
-    std::string repetitionKey() const;
 private:
     std::vector<Move> pseudoMoves() const;
 };
@@ -51,7 +49,6 @@ private:
 struct PlayedMove {
     Move move;
     std::string san;
-    char captured = '.';
     Color player = Color::White;
     int number = 1;
 };
@@ -66,19 +63,12 @@ public:
     const std::string& status() const { return status_; }
     bool finished() const { return status_ != "playing"; }
     bool play(const Move& move);
-    bool canClaimDraw() const;
-    std::vector<Move> claimMoves() const;
-    // An announced move is checked but not played (FIDE 9.2.1 / 9.3.1).
-    bool claimDraw(const Move* announced = nullptr);
-    bool agreeDraw();
     std::string json() const;
 private:
     Board board_;
     std::vector<PlayedMove> history_;
-    std::unordered_map<std::string, int> repetitions_;
     std::string status_ = "playing";
     void evaluate();
-    bool claimAfter(const Move& move) const;
     std::string notation(const Move& move, const std::vector<Move>& legal) const;
 };
 

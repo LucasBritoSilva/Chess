@@ -122,8 +122,6 @@ function refresh() {
     checkmate: `${colors[state.winner]} vencem por xeque-mate.`,
     stalemate: "Afogamento: não há jogadas legais, e o rei não está em xeque.",
     insufficient: "Material insuficiente para um xeque-mate.",
-    fivefold: "A mesma posição apareceu cinco vezes.",
-    seventyfive: "75 lances de cada lado sem captura ou movimento de peão.",
   };
   $("status-label").textContent = playing
     ? `LANCE ${state.fullmove}`

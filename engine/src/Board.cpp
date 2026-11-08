@@ -232,16 +232,6 @@ bool Board::insufficientMaterial() const {
     }
     return (bishops == 0 && knights <= 1) || (knights == 0 && sameColor);
 }
-std::string Board::repetitionKey() const {
-    std::string key(squares.begin(),squares.end());
-    key += turn == Color::White ? 'w' : 'b';
-    key += static_cast<char>('A'+castling);
-    // An unusable (including pinned) en passant target does not distinguish positions.
-    int effectiveEp = -1;
-    if (enPassant >= 0) for (const auto& m : legalMoves())
-        if (m.to == enPassant && type(squares[m.from]) == 'p') { effectiveEp = enPassant; break; }
-    return key + squareName(effectiveEp);
-}
 std::uint64_t perft(const Board& b, int depth) {
     if (depth <= 0) return 1;
     const auto moves = b.legalMoves();
