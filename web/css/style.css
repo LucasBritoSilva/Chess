@@ -28,8 +28,7 @@ a,
 summary {
   -webkit-tap-highlight-color: transparent;
 }
-button,
-select {
+button {
   font: inherit;
 }
 button {
@@ -41,8 +40,7 @@ button:disabled {
 }
 button:focus-visible,
 a:focus-visible,
-summary:focus-visible,
-select:focus-visible {
+summary:focus-visible {
   outline: 3px solid #c38532;
   outline-offset: 4px;
 }
@@ -114,20 +112,11 @@ footer {
   letter-spacing: 1.9px;
   margin: 0 0 10px;
 }
-.page-heading .eyebrow {
-  color: var(--muted);
-}
 h1 {
   font-family: Georgia, serif;
   font-size: 39px;
   font-weight: 400;
   letter-spacing: -1.5px;
-  margin: 0;
-}
-.page-heading > p {
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--muted);
   margin: 0;
 }
 .game-layout {
@@ -139,26 +128,16 @@ h1 {
 .board-section {
   min-width: 0;
 }
-.player {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 64px;
-  padding: 4px 2px 12px;
+.player-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 12px 2px;
 }
-.player + .board-frame {
+.board-frame {
   margin-top: 2px;
 }
 .board-frame + .player {
   padding: 15px 2px 4px;
-}
-.avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #e4e8e0;
-  padding: 5px;
-  flex-shrink: 0;
 }
 .avatar.black {
   background: #dfe5de;
@@ -167,15 +146,6 @@ h1 {
   width: 100%;
   height: 100%;
 }
-.player h2 {
-  font-size: 14px;
-  line-height: 1.3;
-  margin: 0 0 4px;
-  font-weight: 650;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 .turn-tag {
   color: var(--green);
   background: #e4ebdf;
@@ -183,14 +153,6 @@ h1 {
   font-size: 9px;
   letter-spacing: 0.4px;
   border-radius: 4px;
-}
-.captured {
-  height: 22px;
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  color: var(--muted);
-  gap: 0;
 }
 .captured svg {
   width: 22px;
@@ -365,9 +327,6 @@ svg use {
   font-size: 12px;
   margin: 0;
 }
-.status-card.ended {
-  background: #364c56;
-}
 .status-card.in-check {
   background: #79513a;
 }
@@ -387,13 +346,6 @@ svg use {
   font-size: 14px;
   font-weight: 650;
   margin: 0;
-}
-.section-title > span {
-  font-size: 10px;
-  color: var(--muted);
-  background: #f2f4ef;
-  padding: 5px 8px;
-  border-radius: 4px;
 }
 .history-head,
 .history-row {
@@ -451,10 +403,6 @@ svg use {
   font-size: 11px;
   color: var(--muted);
 }
-.history-row .latest {
-  font-weight: 700;
-  color: var(--green);
-}
 .actions {
   border-top: 1px solid var(--line);
   padding: 22px;
@@ -479,13 +427,6 @@ svg use {
   margin-right: 8px;
   font-size: 17px;
 }
-.secondary-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 7px;
-  margin-top: 14px;
-}
-.secondary-actions button,
 .text-button {
   border: 0;
   background: transparent;
@@ -493,20 +434,9 @@ svg use {
   font-size: 10px;
   padding: 7px 0;
 }
-.secondary-actions button:hover,
 .text-button:hover {
   color: var(--green);
   text-decoration: underline;
-}
-.claim-button {
-  width: 100%;
-  border: 1px solid #b7c5b6;
-  border-radius: 5px;
-  background: #f0f5eb;
-  color: var(--green);
-  font-size: 12px;
-  margin-top: 12px;
-  padding: 10px;
 }
 .feedback {
   min-height: 18px;
@@ -570,7 +500,6 @@ dialog {
 }
 dialog::backdrop {
   background: #142b246e;
-  backdrop-filter: blur(3px);
 }
 dialog h2 {
   font-family: Georgia, serif;
@@ -582,16 +511,6 @@ dialog p {
   font-size: 13px;
   line-height: 1.7;
   color: var(--muted);
-}
-dialog .eyebrow {
-  font-size: 9px;
-  color: var(--green);
-}
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 25px;
-  margin-top: 26px;
 }
 .text-button {
   font-size: 12px;
@@ -617,19 +536,6 @@ dialog .eyebrow {
   width: 100%;
   height: auto;
 }
-dialog label {
-  display: block;
-  font-size: 12px;
-  margin: 18px 0 8px;
-}
-dialog select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #bdc9bd;
-  border-radius: 5px;
-  background: #f7f8f4;
-  color: var(--ink);
-}
 .noscript {
   position: fixed;
   bottom: 0;
@@ -637,19 +543,6 @@ dialog select {
   width: 100%;
   padding: 20px;
   text-align: center;
-}
-.piece-enter {
-  animation: appear 0.18s ease-out;
-}
-@keyframes appear {
-  from {
-    opacity: 0.55;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 @media (min-width: 1100px) {
   .game-layout {
@@ -682,13 +575,6 @@ dialog select {
   }
   .history-scroll {
     max-height: 210px;
-  }
-  .page-heading > p {
-    display: none;
-  }
-  .secondary-actions {
-    flex-direction: column;
-    gap: 0;
   }
   .side-panel {
     margin-bottom: 30px;
@@ -740,20 +626,6 @@ dialog select {
     padding: 6px;
     border-radius: 7px;
   }
-  .player {
-    min-height: 57px;
-  }
-  .avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 9px;
-  }
-  .player h2 {
-    font-size: 13px;
-  }
-  .captured {
-    font-size: 9px;
-  }
   .coordinate {
     font-size: 9px;
   }
@@ -782,9 +654,6 @@ dialog select {
   }
   .empty-history {
     padding: 24px 10px;
-  }
-  .secondary-actions {
-    flex-direction: row;
   }
   .board-tip {
     font-size: 10px;
