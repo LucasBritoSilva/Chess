@@ -2,6 +2,9 @@
   "name": "chessgame-tests",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "test:ui": "node tests/test_ui.mjs",
     "test:wasm": "node tests/test_wasm.mjs"

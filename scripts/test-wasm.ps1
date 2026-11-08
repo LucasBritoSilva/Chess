@@ -11,5 +11,5 @@ try {
     & $node build/test_chess.cjs
     if ($LASTEXITCODE -ne 0) { throw 'Testes C++ no WebAssembly falharam.' }
     & $node tests/test_wasm.mjs
-    if ($LASTEXITCODE -ne 0) { throw 'Testes de integração falharam.' }
+    if ($LASTEXITCODE -ne 0) { throw 'Testes de integracao falharam.' }
 } finally { Pop-Location }

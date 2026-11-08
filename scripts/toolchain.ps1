@@ -5,7 +5,7 @@ function Find-Emscripten([string]$Sdk) {
             $candidate = Join-Path $Sdk "upstream/emscripten/$name"
             if (Test-Path -LiteralPath $candidate) { return $candidate }
         }
-        throw "Emscripten não encontrado em $Sdk."
+        throw "Emscripten nao encontrado em $Sdk."
     }
     $command = Get-Command 'em++' -ErrorAction SilentlyContinue
     if ($command) { return $command.Source }
@@ -25,5 +25,5 @@ function Find-Node([string]$Emxx) {
     $sdk = Split-Path (Split-Path (Split-Path $Emxx -Parent) -Parent) -Parent
     $candidate = Get-ChildItem -Path (Join-Path $sdk 'node/*/bin/node.exe'),(Join-Path $sdk 'node/*/node.exe') -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($candidate) { return $candidate.FullName }
-    throw 'Node.js não encontrado. Ative o ambiente do emsdk.'
+    throw 'Node.js nao encontrado. Ative o ambiente do emsdk.'
 }
