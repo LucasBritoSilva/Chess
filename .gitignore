@@ -1,0 +1,6 @@
+/build/
+/web/generated/
+/.tools/
+__pycache__/
+*.pyc
+
